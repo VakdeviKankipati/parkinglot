@@ -9,8 +9,15 @@ public class TicketRepository {
     private Map<Long, Ticket> ticketMap = new HashMap<>();
     private Long previousTicketId = 0L;
 
-    public  Ticket save(Ticket ticket){
+    public TicketRepository(){
+        this.ticketMap=new HashMap<>();
+    }
 
-        return  null;
+    public  Ticket save(Ticket ticket){
+        if(ticket.getId()==0){
+            ticket.setId(previousTicketId++);
+        }
+        this.ticketMap.put(ticket.getId(),ticket);
+        return  ticket;
     }
 }
